@@ -15,6 +15,9 @@ export default async function handler(req, res) {
             {shipping_rate: 'shr_1MHdh7K4M28rgDjhD2iXMps1'},
             {shipping_rate: 'shr_1MHdi0K4M28rgDjhTK4MWxeS'}
         ],
+        automatic_tax: {
+          enabled: true,
+        },
         line_items: req.body.map((item) => {
             const img = item.image[0].asset._ref;
             //const newImage = img.replace('image-', 'https://cdn.sanity.io/images/ouwf753a/production/').replace('-png', '.webp');
@@ -22,6 +25,7 @@ export default async function handler(req, res) {
             return{
                 price_data: {
                     currency: 'cad',
+                    tax_behavior: "exclusive",
                     product_data: {
                         name: item.name,
                         images: [img],
